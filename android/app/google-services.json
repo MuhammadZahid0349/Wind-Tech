@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "137419152145",
+    "project_id": "wind-tech-b38b3",
+    "storage_bucket": "wind-tech-b38b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137419152145:android:90d99e68a8bec3fa498ab0",
+        "android_client_info": {
+          "package_name": "com.example.wind_tech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137419152145-7o475k7989mashg4do96h15ig79ftq1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEzV1U5VEPZDeU1qsZc152SFilBFUaJKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137419152145-7o475k7989mashg4do96h15ig79ftq1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
