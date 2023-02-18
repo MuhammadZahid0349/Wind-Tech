@@ -1,7 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:wind_tech/Constants/ColorConstants.dart';
+import 'package:wind_tech/Constants/utilsDesigns.dart';
+import 'package:wind_tech/Screens/Auth/forgot_password.dart';
+import 'package:wind_tech/Screens/Auth/signup_screen.dart';
 import 'package:wind_tech/Widgets/customized_textformfield.dart';
 import 'package:wind_tech/Widgets/customizted_btn.dart';
 
@@ -34,255 +41,109 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Form(
           key: _formKey,
           child: SingleChildScrollView(
-            child: Container(
-              height: Get.height,
-              width: Get.width,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 7, left: 5),
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          // border: Border.all(color: Color(0xff08296c), width: 1),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.arrow_back_ios_sharp,
-                              color: Color(0xff08296c),
-                            ),
-                            onPressed: () => Navigator.pop(context)),
-                      ),
-                    ),
-                    ///////////////////
-                    /////////////////
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Text(
-                        "\t Welcome Back!! \n\t\t\t\t\t\t\t  Glad to see you again",
-                        style: TextStyle(
-                          color: Color(0xff08296c),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 27,
-                          fontFamily: 'Pacifico',
-                          shadows: [
-                            Shadow(
-                              blurRadius: 10.0,
-                              color: Color(0xff2891cf),
-                              offset: Offset(5.0, 5.0),
-                            ),
-                          ],
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.h),
+              child: Container(
+                height: Get.height,
+                width: Get.width,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      50.h.heightBox,
+                      Center(
+                        child: Container(
+                          height: 100.h,
+                          width: 100.w,
+                          decoration: BoxDecoration(
+                              color: kCaptionColor, shape: BoxShape.circle),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Divider(),
-                    ),
+                      50.h.heightBox,
+                      ////////////////////////////
+                      CustomizedTextFormfield(
+                        myController: _emailController,
+                        hintText: "Enter your Email",
+                        isPassword: false,
+                      ),
+                      15.h.heightBox,
 
-                    ////////////////////////////
-                    CustomizedTextFormfield(
-                      myController: _emailController,
-                      hintText: "Enter your Email",
-                      isPassword: false,
-                    ),
-                    //////////////////////////////////////////
-                    CustomizedTextFormfield(
-                      myController: _passwordController,
-                      hintText: "Enter your Password",
-                      isPassword: true,
-                    ),
-                    ////////////////////////
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.only(top: 20, right: 15, bottom: 20),
-                        child: InkWell(
-                          onTap: () {},
-                          child: Text(
-                            'Forget Password ?',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Color(0xff08296c),
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
+                      //////////////////////////////////////////
+                      CustomizedTextFormfield(
+                        myController: _passwordController,
+                        hintText: "Enter your Password",
+                        isPassword: true,
+                      ),
+                      ////////////////////////
+                      25.h.heightBox,
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => ForgotPassword());
+                          },
+                          child: Text('Forget Password ?',
+                              style: GoogleFonts.josefinSans(
+                                  color: kPrimaryColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15.sp,
+                                  decoration: TextDecoration.underline)),
                         ),
                       ),
-                    ),
-                    //////////////////////////////
-                    CustomizedBtn(
-                        buttonText: "Login",
-                        buttonColor: Color(0xff08296c),
-                        txtColor: Colors.white,
-                        onPressed: () {}),
+                      20.h.heightBox,
+                      Container(
+                          height: 50.h,
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: CustomButton(onPressed: () {}, text: "Login")),
 
-                    ////////////////////////////////////////////////////
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      15.h.heightBox,
+                      ////////////////////////////////////////////////////
+                      RowLineText("or Login with"),
+
+                      12.h.heightBox,
+
+                      ////////////////////////////////////////////////////
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            height: 2,
-                            width: MediaQuery.of(context).size.width * 0.15,
-                            color: Color(0xff08296c),
-                          ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            child: Image(
-                              image: AssetImage('assets/p1.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const Text(
-                            "\t\t Or Login with \t\t",
-                            style: TextStyle(color: Color(0xff08296c)),
-                          ),
-                          Container(
-                            height: 40,
-                            width: 40,
-                            child: Image(
-                              image: AssetImage('assets/p2.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Container(
-                            height: 2,
-                            width: MediaQuery.of(context).size.width * 0.15,
-                            color: Color(0xff08296c),
+                          SocialContainer(() {}, FontAwesomeIcons.facebookF),
+                          SocialContainer(() {}, FontAwesomeIcons.google),
+                          SocialContainer(
+                            () {},
+                            FontAwesomeIcons.apple,
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
+                      60.h.heightBox,
+                      //////////////////////////////////////////////////
 
-                    ////////////////////////////////////////////////////
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            height: 60,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xff08296c),
-                                ),
-                                BoxShadow(
-                                  color: Colors.white,
-                                  spreadRadius: -8.0,
-                                  blurRadius: 13.0,
-                                ),
-                              ],
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                FontAwesomeIcons.facebookF,
-                                color: Colors.blue,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          ////////////////////////
-                          Container(
-                            height: 60,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xff08296c),
-                                ),
-                                BoxShadow(
-                                  color: Colors.white,
-                                  spreadRadius: -8.0,
-                                  blurRadius: 13.0,
-                                ),
-                              ],
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                FontAwesomeIcons.google,
-                                color: Colors.blue,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                          /////////////////////////
-                          Container(
-                            height: 60,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xff08296c),
-                                ),
-                                BoxShadow(
-                                  color: Colors.white,
-                                  spreadRadius: -8.0,
-                                  blurRadius: 13.0,
-                                ),
-                              ],
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                FontAwesomeIcons.apple,
-                                size: 28,
-                                color: Colors.blue,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    //////////////////////////////////////////////////
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(8, 18, 8, 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Text(
-                            "Don't have an account?",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                            ),
-                          ),
+                          Text("Don't have an account?",
+                              style: GoogleFonts.josefinSans(
+                                color: kPrimaryColor,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 15.sp,
+                              )),
                           InkWell(
-                            onTap: () {},
-                            child: Text(
-                              "Register Now",
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
+                            onTap: () {
+                              Get.to(() => SignUpScreen());
+                            },
+                            child: Text("Register Now",
+                                style: GoogleFonts.josefinSans(
+                                    color: kPrimaryColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 15.sp,
+                                    decoration: TextDecoration.underline)),
                           ),
                         ],
                       ),
-                    ),
-                  ]),
+                      20.h.heightBox,
+                    ]),
+              ),
             ),
           ),
         ),

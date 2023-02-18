@@ -1,241 +1,164 @@
-// import 'package:bc_info/Screens/login_screen.dart';
-// import 'package:bc_info/Widgets/customized_textformfield.dart';
-// import 'package:bc_info/Widgets/customizted_btn.dart';
-// import 'package:bc_info/firebase/Data%20CRUD/reset_passwordfb.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:wind_tech/Constants/ColorConstants.dart';
+import 'package:wind_tech/Constants/utilsDesigns.dart';
+import 'package:wind_tech/Screens/Auth/login_screen.dart';
+import 'package:wind_tech/Widgets/customized_textformfield.dart';
+import 'package:wind_tech/Widgets/customizted_btn.dart';
 
-// class ForgotPassword extends StatefulWidget {
-//   const ForgotPassword({Key? key}) : super(key: key);
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({Key? key}) : super(key: key);
 
-//   @override
-//   State<ForgotPassword> createState() => _ForgotPasswordState();
-// }
+  @override
+  State<ForgotPassword> createState() => _ForgotPasswordState();
+}
 
-// class _ForgotPasswordState extends State<ForgotPassword> {
-//   final _formKey = GlobalKey<FormState>();
+class _ForgotPasswordState extends State<ForgotPassword> {
+  final _formKey = GlobalKey<FormState>();
 
-//   var email = "";
-//   TextEditingController _emailController = TextEditingController();
+  var email = "";
 
-//   @override
-//   void dispose() {
-//     _emailController.dispose();
-//     super.dispose();
-//   }
+  TextEditingController _emailController = TextEditingController();
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         body: Form(
-//           key: _formKey,
-//           child: SingleChildScrollView(
-//             child: Container(
-//               height: MediaQuery.of(context).size.height,
-//               width: double.infinity,
-//               ///////////////////////////////
-//               child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Padding(
-//                       padding: const EdgeInsets.only(top: 7, left: 5),
-//                       child: Container(
-//                         height: 40,
-//                         width: 40,
-//                         decoration: BoxDecoration(
-//                           // border: Border.all(color: Color(0xff08296c), width: 1),
-//                           borderRadius: BorderRadius.circular(10),
-//                         ),
-//                         child: IconButton(
-//                             icon: Icon(
-//                               Icons.arrow_back_ios_sharp,
-//                               color: Color(0xff08296c),
-//                             ),
-//                             onPressed: () => Navigator.pop(context)),
-//                       ),
-//                     ),
-//                     ///////////////////
-//                     /////////////////
-//                     const Padding(
-//                       padding: EdgeInsets.only(left: 20, right: 10),
-//                       child: Text(
-//                         "Forgot Password!!",
-//                         style: TextStyle(
-//                           color: Color(0xff08296c),
-//                           fontWeight: FontWeight.w400,
-//                           fontSize: 27,
-//                           fontFamily: 'Pacifico',
-//                           decoration: TextDecoration.underline,
-//                           decorationStyle: TextDecorationStyle.double,
-//                           shadows: [
-//                             Shadow(
-//                               blurRadius: 10.0,
-//                               color: Color(0xff2891cf),
-//                               offset: Offset(5.0, 5.0),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.all(25.0),
-//                       child: Container(
-//                         child: Text(
-//                           "Don't worry! It occurs. Please enter the email address which linked with your account",
-//                           style: TextStyle(
-//                             color: Color(0xff08296c),
-//                             fontWeight: FontWeight.w300,
-//                             fontSize: 18,
-//                             shadows: [
-//                               Shadow(
-//                                 blurRadius: 10.0,
-//                                 color: Color(0xff2891cf),
-//                                 offset: Offset(5.0, 5.0),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       ),
-//                     ),
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
 
-//                     ////////////////////////////
-//                     CustomizedTextFormfield(
-//                       myController: _emailController,
-//                       hintText: "Enter your Email",
-//                       isPassword: false,
-//                     ),
-//                     ///////////////////////////////
-//                     SizedBox(
-//                       height: 20,
-//                     ),
-//                     //////////////////////////////
-//                     CustomizedBtn(
-//                       buttonText: "Send Email",
-//                       buttonColor: Color(0xff08296c),
-//                       txtColor: Colors.white,
-//                       onPressed: () {
-//                         if (_formKey.currentState!.validate()) {
-//                           setState(() {
-//                             email = _emailController.text;
-//                           });
-//                           resetPassword(context, email);
-//                         }
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        bottomNavigationBar: Container(
+          width: Get.width,
+          child: Image(
+            image: AssetImage('assets/images/bgt2.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Container(
+              height: Get.height,
+              width: Get.width,
+              ///////////////////////////////
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.h),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [BackBtn()],
+                      ),
+                      80.h.heightBox,
+                      /////////////////
+                      Text(
+                        "Forgot Password!!",
+                        style: GoogleFonts.josefinSans(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 25.sp,
+                          letterSpacing: 2,
+                          decoration: TextDecoration.underline,
+                          decorationStyle: TextDecorationStyle.double,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: KSecColor.withOpacity(0.5),
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      15.h.heightBox,
+                      Text(
+                        "\t\t\t  Don't worry! It occurs. Please enter the email address which linked with your account...",
+                        softWrap: true,
+                        style: GoogleFonts.josefinSans(
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18.sp,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: Color(0xff2891cf).withOpacity(0.3),
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      35.h.heightBox,
+                      ////////////////////////////
+                      CustomizedTextFormfield(
+                        myController: _emailController,
+                        hintText: "Enter your Email",
+                        isPassword: false,
+                      ),
+                      ///////////////////////////////
+                      40.h.heightBox,
+                      //////////////////////////////
+                      Container(
+                        height: 50.h,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: CustomButton(
+                          text: "Send Email",
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              setState(() {
+                                email = _emailController.text;
+                              });
+                              // resetPassword(context, email);
+                            }
+                          },
+                        ),
+                      ),
+                      20.h.heightBox,
 
-//                         showDialog(
-//                           context: context,
-//                           builder: (BuildContext context) {
-//                             return AlertDialog(
-//                               title: new Text("Forgot Password!!"),
-//                               content: new Text("Email has been send!"),
-//                               actions: <Widget>[
-//                                 ElevatedButton(
-//                                   child: new Text("OK"),
-//                                   onPressed: () {
-//                                     Navigator.of(context).pop();
-//                                   },
-//                                 ),
-//                               ],
-//                             );
-//                           },
-//                         );
-//                       },
-//                     ),
+                      ////////////////////////////////////////////////////
+                      RowLineText("* * * * *"),
+                      30.h.heightBox,
 
-//                     ////////////////////////////////////////////////////
-//                     Padding(
-//                       padding: const EdgeInsets.only(top: 15),
-//                       child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         children: [
-//                           Container(
-//                             height: 2,
-//                             width: MediaQuery.of(context).size.width * 0.15,
-//                             color: Color(0xff08296c),
-//                           ),
-//                           Container(
-//                             height: 40,
-//                             width: 40,
-//                             child: Image(
-//                               image: AssetImage('assets/p1.png'),
-//                               fit: BoxFit.cover,
-//                             ),
-//                           ),
-//                           const Text(
-//                             "\t\t * * * * * \t\t",
-//                             style: TextStyle(
-//                                 color: Color(0xff08296c), fontSize: 20),
-//                           ),
-//                           Container(
-//                             height: 40,
-//                             width: 40,
-//                             child: Image(
-//                               image: AssetImage('assets/p2.png'),
-//                               fit: BoxFit.cover,
-//                             ),
-//                           ),
-//                           Container(
-//                             height: 2,
-//                             width: MediaQuery.of(context).size.width * 0.15,
-//                             color: Color(0xff08296c),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       height: 100,
-//                     ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text("Remember Password ?",
+                              style: GoogleFonts.josefinSans(
+                                color: kPrimaryColor,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 15.sp,
+                              )),
+                          InkWell(
+                            onTap: () {
+                              Get.to(() => LoginScreen());
+                            },
+                            child: Text("Login Now",
+                                style: GoogleFonts.josefinSans(
+                                    color: kPrimaryColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 15.sp,
+                                    decoration: TextDecoration.underline)),
+                          ),
+                        ],
+                      ),
 
-//                     ////////////////////////////////////////////////
-//                     Padding(
-//                       padding: const EdgeInsets.fromLTRB(8, 50, 8, 0),
-//                       child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                         children: [
-//                           const Text(
-//                             "Remember Password ?",
-//                             style: TextStyle(
-//                               color: Color(0xff08296c),
-//                               fontSize: 15,
-//                             ),
-//                           ),
-//                           InkWell(
-//                             onTap: () {
-//                               Navigator.push(
-//                                   context,
-//                                   MaterialPageRoute(
-//                                       builder: (_) => LoginScreen()));
-//                             },
-//                             child: Text(
-//                               "Login",
-//                               style: TextStyle(
-//                                 color: Colors.blue,
-//                                 fontSize: 15,
-//                                 fontWeight: FontWeight.w500,
-//                                 decoration: TextDecoration.underline,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-
-//                     /////////////////////////////////////////////////
-//                     Container(
-//                       width: double.infinity,
-//                       margin: EdgeInsets.only(top: 10),
-//                       child: Image(
-//                         image: AssetImage('assets/bgt2.png'),
-//                         fit: BoxFit.cover,
-//                       ),
-//                     ),
-//                     /////////////////////////////////////////
-//                   ]),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+                      /////////////////////////////////////////
+                    ]),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

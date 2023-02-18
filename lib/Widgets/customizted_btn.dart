@@ -1,43 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class CustomizedBtn extends StatelessWidget {
-  final String? buttonText;
-  final Color? buttonColor;
-  final Color? txtColor;
-  // final Function? onPressed;
+class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final String text;
+  final Color? textColor;
 
-  const CustomizedBtn(
-      {Key? key,
-      this.buttonText,
-      this.buttonColor,
-      required this.onPressed,
-      this.txtColor})
-      : super(key: key);
+  const CustomButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20),
-      child: InkWell(
-        onTap: onPressed,
-        child: Container(
-          height: 50,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            color: buttonColor,
-            border: Border.all(width: 1, color: Colors.blue),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(
-            child: Text(
-              buttonText!,
-              style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.bold, color: txtColor),
-            ),
-          ),
+    return ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          splashFactory: NoSplash.splashFactory,
+          elevation: 0,
+          shadowColor: Colors.transparent,
         ),
-      ),
-    );
+        child: Text(text.toUpperCase(),
+            softWrap: true,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.josefinSans(
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              fontSize: 17.sp,
+              letterSpacing: 10,
+            )));
   }
 }
